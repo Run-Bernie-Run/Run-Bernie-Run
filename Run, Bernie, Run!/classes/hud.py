@@ -4,7 +4,7 @@ import sys
 
 class Hud():
     def __init__(self, settings, screen):
-        # keep track of time
+        # keep track of score
         self.score = 0
 
         # keep track of settings
@@ -47,7 +47,7 @@ class Hud():
         self.campaign_funds_label_image = self.font.render('Campaign Funds:', True, self.settings.hud_text_color,
             self.settings.hud_bg_color)
 
-        # initializing time label
+        # initializing score label
         self.score_label_rect = pygame.Rect(200, 410, 60, 50)
         self.score_label_image = self.font.render('Score:', True, self.settings.hud_text_color,
             self.settings.hud_bg_color)

@@ -12,13 +12,12 @@ class Settings():
         self.invincibility_frames = 60
 
         # game settings
-        self.FPS = 30
-        self.spawn_rate = 2500
-        self.loss_of_funds_per_loop = 125000
+        self.FPS = 35
+        self.spawn_rate = 250
+        self.loss_of_funds_per_loop = 110000
         self.points_per_milisecond = 1
         self.paused = False
-        self.last_spawn_time = pygame.time.get_ticks()
-        self.time_elapsed_since_last_spawn = 0
+        self.last_spawn_time = 0
         self.add_funds_update = 1000000
         self.mode = 'title'
         self.selector = 'play'
@@ -43,7 +42,6 @@ class Settings():
         self.number_of_heads = 17
         self.length_of_head = 60
         self.speed_of_heads_x = 8
-        self.speed_of_heads_y = 4
 
         # sound effects settings
         self.num_sound_effects = 10

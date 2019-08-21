@@ -33,7 +33,6 @@ def check_events_game(hud, bernie, heads, settings):
             elif event.key == pygame.K_RETURN:
                 settings.paused = True
                 pygame.mixer.music.pause()
-                settings.time_elapsed_since_last_spawn = pygame.time.get_ticks() - settings.last_spawn_time
         elif event.type == pygame.KEYUP:
             # start falling if player releases space early
             if event.key == pygame.K_SPACE and bernie.is_jumping:
@@ -119,9 +118,9 @@ def update_game(bernie, hud, headlines, heads, shit_sound_effect, secret_image, 
             heads.remove(head)
 
     # spawn obstacles
-    if pygame.time.get_ticks() > settings.last_spawn_time + settings.spawn_rate:
+    if hud.score > settings.last_spawn_time + settings.spawn_rate:
         # give last spawn time new value
-        settings.last_spawn_time = pygame.time.get_ticks()
+        settings.last_spawn_time = hud.score
 
         # randomly generate one of eight obstacles
         obstacle_num = randint(1, 8)
@@ -182,9 +181,6 @@ def paused(settings, hud, screen, bernie):
                 bernie.is_jumping = False
                 bernie.is_falling = True
 
-    # maintain distance between pygame timer and last_spawn_time
-    settings.last_spawn_time = pygame.time.get_ticks() - settings.time_elapsed_since_last_spawn
-
     # draw pause screen
     screen.blit(hud.pause_image, hud.pause_rect)
     pygame.display.flip()
@@ -199,6 +195,7 @@ def check_event_title(settings, sound_effects, get_ready_image, get_ready_rect):
                 settings.selector = 'play'
             if event.key == pygame.K_RETURN:
                 if settings.selector == 'play':
+                    settings.last_spawn_time = 0
                     settings.mode = 'game'
 
                     # start timers
